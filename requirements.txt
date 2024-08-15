@@ -1,0 +1,4 @@
+opencv-python==4.8.0.74
+opencv-python-headless==4.8.0.74  # Headless version, useful for environments without a display
+numpy==1.23.5
+imutils==0.5.4  # Utility functions for basic image processing tasks
