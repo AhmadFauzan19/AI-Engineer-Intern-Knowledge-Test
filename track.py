@@ -13,15 +13,6 @@ with open("coco.names", "r") as f:
 # Load the video
 cap = cv2.VideoCapture("toll_gate.mp4")
 
-# Get video properties
-frame_width = int(cap.get(3))
-frame_height = int(cap.get(4))
-fps = int(cap.get(cv2.CAP_PROP_FPS))
-
-# Define the codec and create a VideoWriter object
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi', fourcc, fps, (frame_width, frame_height))
-
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
@@ -73,9 +64,6 @@ while cap.isOpened():
             cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
             cv2.putText(frame, f"{label} {confidence:.2f}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-    # Write the frame to the output video
-    out.write(frame)
-
     # Display the frame with detection boxes
     cv2.imshow("Vehicle Detection", frame)
 
@@ -85,5 +73,4 @@ while cap.isOpened():
 
 # Release resources
 cap.release()
-out.release()  # Don't forget to release the VideoWriter object
 cv2.destroyAllWindows()
